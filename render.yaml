@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: dulang-formulation-screening-tool
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: .
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

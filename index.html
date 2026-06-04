@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>独狼制剂处方筛选综合工具</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Dulang Formulation Screening Workspace</p>
+        <h1>独狼制剂处方筛选综合工具</h1>
+      </div>
+      <div class="header-actions">
+        <button id="loadSampleBtn" type="button">载入示例</button>
+        <button id="saveBtn" type="button">保存草稿</button>
+        <button id="exportBtn" type="button">导出报告</button>
+      </div>
+    </header>
+
+    <section class="status-strip" aria-label="项目状态">
+      <div>
+        <span class="metric-label">处方总量</span>
+        <strong id="totalPercent">0.0%</strong>
+      </div>
+      <div>
+        <span class="metric-label">风险评分</span>
+        <strong id="riskScore">--</strong>
+      </div>
+      <div>
+        <span class="metric-label">当前阶段</span>
+        <strong id="stageLabel">未开始</strong>
+      </div>
+      <div>
+        <span class="metric-label">建议动作</span>
+        <strong id="actionLabel">录入基础信息</strong>
+      </div>
+    </section>
+
+    <nav class="tabbar" aria-label="模块导航">
+      <button class="tab active" type="button" data-tab="api">原料药</button>
+      <button class="tab" type="button" data-tab="product">制剂与参比</button>
+      <button class="tab" type="button" data-tab="formula">处方筛选</button>
+      <button class="tab" type="button" data-tab="results">检验结果</button>
+      <button class="tab" type="button" data-tab="summary">评价汇总</button>
+    </nav>
+
+    <section id="api" class="tab-panel active">
+      <div class="section-heading">
+        <h2>原料药性质</h2>
+        <p>用于判断溶出、稳定性、工艺风险和辅料选择方向。</p>
+      </div>
+      <div class="form-grid">
+        <label>原料药名称
+          <input id="apiName" data-bind="api.name" placeholder="如：盐酸二甲双胍">
+        </label>
+        <label>化学式
+          <input id="chemicalFormula" data-bind="api.formula" placeholder="如：C4H11N5·HCl">
+        </label>
+        <label>分子量
+          <input type="number" step="0.01" data-bind="api.mw" placeholder="g/mol">
+        </label>
+        <label>剂量规格
+          <input data-bind="api.strength" placeholder="如：250 mg/片">
+        </label>
+        <label>密度
+          <input type="number" step="0.01" data-bind="api.density" placeholder="g/mL">
+        </label>
+        <label>流动性/黏性描述
+          <select data-bind="api.flow">
+            <option value="">未评估</option>
+            <option>良好</option>
+            <option>一般</option>
+            <option>较差</option>
+            <option>黏性较强</option>
+          </select>
+        </label>
+        <label>水中溶解性
+          <select data-bind="api.solubility">
+            <option value="">未评估</option>
+            <option>高</option>
+            <option>中</option>
+            <option>低</option>
+            <option>pH依赖</option>
+          </select>
+        </label>
+        <label>pKa
+          <input data-bind="api.pka" placeholder="可输入多个，如 4.2, 8.9">
+        </label>
+        <label>BCS 分类
+          <select data-bind="api.bcs">
+            <option value="">未确定</option>
+            <option>I</option>
+            <option>II</option>
+            <option>III</option>
+            <option>IV</option>
+          </select>
+        </label>
+        <label>吸湿性
+          <select data-bind="api.hygroscopicity">
+            <option value="">未评估</option>
+            <option>低</option>
+            <option>中</option>
+            <option>高</option>
+          </select>
+        </label>
+        <label class="span-2">关键风险备注
+          <textarea data-bind="api.notes" rows="4" placeholder="如：对碱敏感、低pH下稳定性差、粒径分布影响溶出等"></textarea>
+        </label>
+      </div>
+    </section>
+
+    <section id="product" class="tab-panel">
+      <div class="section-heading">
+        <h2>制剂与原研信息</h2>
+        <p>明确剂型、研发定位和参比制剂信息，用于设定 QTPP/CQA。</p>
+      </div>
+      <div class="form-grid">
+        <label>制剂名称
+          <input data-bind="product.name" placeholder="如：XX片">
+        </label>
+        <label>剂型
+          <select id="dosageForm" data-bind="product.dosageForm">
+            <option>片剂</option>
+            <option>胶囊剂</option>
+            <option>颗粒剂</option>
+            <option>口服溶液</option>
+            <option>注射剂</option>
+          </select>
+        </label>
+        <label>给药途径
+          <select data-bind="product.route">
+            <option>口服</option>
+            <option>注射</option>
+            <option>外用</option>
+            <option>吸入</option>
+            <option>其他</option>
+          </select>
+        </label>
+        <label>研发类型
+          <select id="developmentType" data-bind="product.developmentType">
+            <option>仿制药</option>
+            <option>改良型新药</option>
+            <option>新药</option>
+          </select>
+        </label>
+        <label>参比/原研名称
+          <input data-bind="product.referenceName" placeholder="原研或参比制剂名称">
+        </label>
+        <label>目标释放特征
+          <select data-bind="product.release">
+            <option>速释</option>
+            <option>缓释</option>
+            <option>肠溶</option>
+            <option>其他</option>
+          </select>
+        </label>
+        <label class="span-2">原研信息导入
+          <textarea data-bind="product.referenceInfo" rows="6" placeholder="粘贴说明书、参比信息、公开处方线索、质量标准或溶出曲线摘要"></textarea>
+        </label>
+        <div class="span-2 reference-search">
+          <div class="reference-search-header">
+            <div>
+              <h3>原研/参比信息联网检索</h3>
+              <p>基于当前药品名自动生成检索入口；核实后可粘贴资料并提取结构化字段。</p>
+            </div>
+            <div class="reference-actions">
+              <button id="buildReferenceLinksBtn" type="button">生成检索链接</button>
+              <button id="extractReferenceBtn" type="button">提取粘贴信息</button>
+            </div>
+          </div>
+          <div id="referenceLinks" class="reference-links"></div>
+          <div id="referenceExtracted" class="reference-extracted"></div>
+        </div>
+        <label class="span-2">目标产品质量概况 QTPP
+          <textarea data-bind="product.qtpp" rows="4" placeholder="如：剂量准确、速释、45 min 溶出不低于80%、硬度满足包衣/包装要求等"></textarea>
+        </label>
+      </div>
+    </section>
+
+    <section id="formula" class="tab-panel">
+      <div class="section-heading with-action">
+        <div>
+          <h2>处方设计与辅料筛选</h2>
+          <p>选择辅料类别并录入比例，系统根据处方组成和API性质给出初步风险提示。</p>
+        </div>
+        <button id="generateCandidatesBtn" type="button">参考生成候选处方</button>
+      </div>
+
+      <div class="initial-formula-frame">
+        <div class="formula-meta-grid">
+          <label>处方型号
+            <input data-bind="formula.model" placeholder="如：F0、F1、处方A、目标处方">
+          </label>
+          <label>处方依据
+            <select data-bind="formula.basis">
+              <option>参考原研/参比处方</option>
+              <option>目标产品处方</option>
+              <option>自拟筛选处方</option>
+              <option>候选处方优化</option>
+            </select>
+          </label>
+          <label class="span-2">设计说明
+            <textarea data-bind="formula.rationale" rows="3" placeholder="说明该初始处方参考了哪些原研信息、目标处方线索或关键筛选思路。"></textarea>
+          </label>
+        </div>
+        <div class="formula-toolbar">
+          <button id="addComponentBtn" type="button">新增处方行</button>
+          <button id="resetFormulaTemplateBtn" type="button">恢复基础类别</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>处方成分类别</th>
+              <th>处方成分/型号</th>
+              <th>处方比例 %</th>
+              <th>说明</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="componentsBody"></tbody>
+        </table>
+      </div>
+
+      <div id="candidateList" class="candidate-list" aria-live="polite"></div>
+    </section>
+
+    <section id="results" class="tab-panel">
+      <div class="section-heading">
+        <h2>制剂检验结果</h2>
+        <p>先以内控参考规则评价片剂关键质量属性，后续可扩展到不同剂型。</p>
+      </div>
+      <div class="form-grid">
+        <label>平均片重 mg
+          <input type="number" step="0.1" data-bind="results.avgWeight">
+        </label>
+        <label>片重RSD %
+          <input type="number" step="0.01" data-bind="results.weightRsd">
+        </label>
+        <label>硬度 N
+          <input type="number" step="0.1" data-bind="results.hardness">
+        </label>
+        <label>脆碎度 %
+          <input type="number" step="0.01" data-bind="results.friability">
+        </label>
+        <label>崩解时间 min
+          <input type="number" step="0.1" data-bind="results.disintegration">
+        </label>
+        <label>含量均匀度 AV
+          <input type="number" step="0.1" data-bind="results.contentUniformityAv">
+        </label>
+        <label>15 min 溶出 %
+          <input type="number" step="0.1" data-bind="results.dissolution15">
+        </label>
+        <label>30 min 溶出 %
+          <input type="number" step="0.1" data-bind="results.dissolution30">
+        </label>
+        <label>45 min 溶出 %
+          <input type="number" step="0.1" data-bind="results.dissolution45">
+        </label>
+        <label>含量 %
+          <input type="number" step="0.1" data-bind="results.assay">
+        </label>
+        <label class="span-2">实验现象记录
+          <textarea data-bind="results.observations" rows="5" placeholder="如：压片粘冲、顶裂、片面粗糙、崩解后颗粒聚集、溶出杯中漂浮等"></textarea>
+        </label>
+      </div>
+    </section>
+
+    <section id="summary" class="tab-panel">
+      <div class="section-heading with-action">
+        <div>
+          <h2>评价、建议与汇报概览</h2>
+          <p>将处方组成、关键检测结果和下一步建议合并为研发总结视图。</p>
+        </div>
+        <button id="copySummaryBtn" type="button">复制总结</button>
+      </div>
+      <div class="summary-layout">
+        <section class="summary-block">
+          <h3>处方组成概览</h3>
+          <div id="compositionChart" class="composition-chart"></div>
+        </section>
+        <section class="summary-block">
+          <h3>关键指标评价</h3>
+          <div id="qualityPanel" class="quality-panel"></div>
+        </section>
+        <section class="summary-block full">
+          <h3>下一步建议</h3>
+          <ol id="recommendations" class="recommendations"></ol>
+        </section>
+        <section class="summary-block full">
+          <h3>研发总结草稿</h3>
+          <pre id="reportText" class="report-text"></pre>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
