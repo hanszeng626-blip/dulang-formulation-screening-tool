@@ -71,6 +71,20 @@ textarea:focus {
   padding: 14px 0 18px;
 }
 
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.brand-logo {
+  width: 168px;
+  height: auto;
+  flex: 0 0 auto;
+  border-radius: 8px;
+}
+
 .eyebrow {
   margin: 0 0 4px;
   color: var(--primary-dark);
@@ -542,6 +556,14 @@ tr:last-child td {
   .section-heading.with-action {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .brand-lockup {
+    align-items: flex-start;
+  }
+
+  .brand-logo {
+    width: 130px;
   }
 
   .header-actions,
