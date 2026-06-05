@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: dulang-formulation-screening-tool
+    name: fangyan-formucore
     runtime: static
     buildCommand: ""
     staticPublishPath: .
