@@ -1,9 +1,9 @@
 :root {
-  --bg: #f5f7f8;
+  --bg: #f4f6f7;
   --surface: #ffffff;
   --surface-2: #eef3f4;
   --text: #1f2a2e;
-  --muted: #5f6f76;
+  --muted: #5d6b72;
   --line: #d7e0e3;
   --primary: #0f766e;
   --primary-dark: #0b5f59;
@@ -41,6 +41,7 @@ button {
   color: var(--text);
   cursor: pointer;
   padding: 8px 12px;
+  white-space: nowrap;
 }
 
 button:hover {
@@ -58,8 +59,8 @@ textarea:focus {
 }
 
 .app-shell {
-  width: min(1280px, calc(100vw - 32px));
-  margin: 24px auto 40px;
+  width: min(1440px, calc(100vw - 32px));
+  margin: 22px auto 40px;
 }
 
 .app-header {
@@ -67,7 +68,7 @@ textarea:focus {
   justify-content: space-between;
   align-items: flex-end;
   gap: 20px;
-  padding: 18px 0;
+  padding: 14px 0 18px;
 }
 
 .eyebrow {
@@ -87,13 +88,13 @@ p {
 
 h1 {
   margin-bottom: 0;
-  font-size: clamp(24px, 3vw, 36px);
+  font-size: 32px;
   line-height: 1.2;
 }
 
 h2 {
-  margin-bottom: 4px;
-  font-size: 22px;
+  margin-bottom: 0;
+  font-size: 21px;
 }
 
 h3 {
@@ -101,26 +102,35 @@ h3 {
   font-size: 16px;
 }
 
-.header-actions {
+.header-actions,
+.button-row,
+.formula-toolbar {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
   gap: 8px;
 }
 
+.header-actions {
+  justify-content: flex-end;
+}
+
 .header-actions button:last-child,
-#generateCandidatesBtn,
-#copySummaryBtn,
-#addComponentBtn {
+.button-row button:first-child,
+.formula-toolbar button:first-child,
+#addComponentBtn,
+#calculateF2Btn,
+#copyReportBtn {
   background: var(--primary);
-  color: #fff;
   border-color: var(--primary);
+  color: #fff;
 }
 
 .header-actions button:last-child:hover,
-#generateCandidatesBtn:hover,
-#copySummaryBtn:hover,
-#addComponentBtn:hover {
+.button-row button:first-child:hover,
+.formula-toolbar button:first-child:hover,
+#addComponentBtn:hover,
+#calculateF2Btn:hover,
+#copyReportBtn:hover {
   background: var(--primary-dark);
   color: #fff;
 }
@@ -137,7 +147,7 @@ h3 {
 }
 
 .status-strip div {
-  min-height: 78px;
+  min-height: 76px;
   background: var(--surface);
   padding: 14px 16px;
 }
@@ -165,7 +175,7 @@ h3 {
 
 .tab {
   flex: 0 0 auto;
-  min-width: 118px;
+  min-width: 112px;
   border: 0;
   border-bottom: 3px solid transparent;
   border-radius: 0;
@@ -199,11 +209,6 @@ h3 {
   padding-bottom: 14px;
 }
 
-.section-heading p {
-  margin-bottom: 0;
-  color: var(--muted);
-}
-
 .section-heading.with-action {
   display: flex;
   justify-content: space-between;
@@ -215,6 +220,10 @@ h3 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
+}
+
+.form-grid.compact {
+  margin-bottom: 14px;
 }
 
 label {
@@ -247,18 +256,6 @@ textarea {
   grid-column: span 2;
 }
 
-.formula-entry {
-  display: grid;
-  grid-template-columns: 1.1fr 1.4fr 0.7fr 1.4fr auto;
-  gap: 10px;
-  align-items: end;
-  margin-bottom: 16px;
-  padding: 14px;
-  background: var(--surface-2);
-  border: 1px solid var(--line);
-  border-radius: 8px;
-}
-
 .initial-formula-frame {
   display: grid;
   gap: 14px;
@@ -275,77 +272,74 @@ textarea {
   gap: 14px;
 }
 
-.formula-toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.formula-toolbar button:first-child {
-  background: var(--primary);
-  border-color: var(--primary);
-  color: #fff;
-}
-
-.formula-toolbar button:first-child:hover {
-  background: var(--primary-dark);
-  color: #fff;
-}
-
-.reference-search {
-  display: grid;
-  gap: 12px;
+.table-wrap {
+  overflow-x: auto;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: var(--surface-2);
-  padding: 14px;
 }
 
-.reference-search-header {
-  display: flex;
-  justify-content: space-between;
-  gap: 14px;
+.table-wrap.spaced {
+  margin-top: 16px;
 }
 
-.reference-search h3 {
-  margin-bottom: 4px;
+table {
+  width: 100%;
+  min-width: 920px;
+  border-collapse: collapse;
 }
 
-.reference-search p {
-  margin-bottom: 0;
+th,
+td {
+  border-bottom: 1px solid var(--line);
+  padding: 9px 10px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+th {
+  background: #f7fafb;
   color: var(--muted);
   font-size: 13px;
 }
 
-.reference-actions {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
+td input,
+td select,
+td textarea {
+  min-width: 96px;
 }
 
-.reference-actions button:first-child {
-  background: var(--blue);
-  border-color: var(--blue);
-  color: #fff;
+td textarea {
+  min-height: 44px;
 }
 
-.reference-actions button:first-child:hover {
-  background: #1d4ed8;
-  color: #fff;
+tr:last-child td {
+  border-bottom: 0;
 }
 
-.reference-links,
-.reference-extracted {
+.small-input {
+  min-width: 72px;
+}
+
+.wide-input {
+  min-width: 180px;
+}
+
+.delete-btn {
+  min-height: 32px;
+  padding: 4px 8px;
+  color: var(--red);
+}
+
+.reference-links {
   display: grid;
   gap: 8px;
+  margin-top: 16px;
 }
 
-.reference-link,
-.extracted-row {
+.reference-link {
   display: grid;
-  grid-template-columns: 156px 1fr;
+  grid-template-columns: 160px 1fr;
   gap: 12px;
-  align-items: start;
   min-height: 34px;
   border-top: 1px solid var(--line);
   padding-top: 8px;
@@ -361,72 +355,54 @@ textarea {
   font-weight: 700;
 }
 
-.table-wrap {
-  overflow-x: auto;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-}
-
-table {
-  width: 100%;
-  min-width: 720px;
-  border-collapse: collapse;
-}
-
-th,
-td {
-  border-bottom: 1px solid var(--line);
-  padding: 10px 12px;
-  text-align: left;
-  vertical-align: middle;
-}
-
-th {
-  background: #f7fafb;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-td input {
-  min-width: 84px;
-}
-
-tr:last-child td {
-  border-bottom: 0;
-}
-
-.delete-btn {
-  min-height: 32px;
-  padding: 4px 8px;
-  color: var(--red);
-}
-
-.candidate-list {
+.dissolution-layout {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin-top: 16px;
+  grid-template-columns: minmax(0, 1.4fr) minmax(360px, 0.9fr);
+  gap: 14px;
 }
 
-.candidate {
+.curve-panel {
+  min-height: 360px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  padding: 14px;
   background: #fff;
+  padding: 12px;
 }
 
-.candidate h3 {
-  margin-bottom: 8px;
+#dissolutionChart {
+  width: 100%;
+  height: 100%;
+  min-height: 330px;
 }
 
-.candidate ul {
-  min-height: 132px;
-  margin: 0 0 12px 18px;
-  padding: 0;
+.chart-axis {
+  stroke: #84949a;
+  stroke-width: 1;
 }
 
-.candidate li {
-  margin-bottom: 5px;
+.chart-grid {
+  stroke: #e4ebee;
+  stroke-width: 1;
+}
+
+.chart-label {
+  fill: var(--muted);
+  font-size: 12px;
+}
+
+.chart-line {
+  fill: none;
+  stroke-width: 2.5;
+}
+
+.chart-point {
+  stroke: #fff;
+  stroke-width: 1.5;
+}
+
+.chart-legend {
+  fill: var(--text);
+  font-size: 12px;
 }
 
 .summary-layout {
@@ -453,7 +429,7 @@ tr:last-child td {
 
 .bar-row {
   display: grid;
-  grid-template-columns: 112px minmax(120px, 1fr) 58px;
+  grid-template-columns: 116px minmax(120px, 1fr) 64px;
   gap: 10px;
   align-items: center;
   min-height: 28px;
@@ -527,8 +503,8 @@ tr:last-child td {
 }
 
 .report-text {
-  min-height: 220px;
-  max-height: 520px;
+  min-height: 320px;
+  max-height: 620px;
   overflow: auto;
   margin: 0;
   white-space: pre-wrap;
@@ -545,7 +521,18 @@ tr:last-child td {
   padding: 12px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1050px) {
+  .dissolution-layout,
+  .summary-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-block.full {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 860px) {
   .app-shell {
     width: min(100vw - 20px, 760px);
     margin-top: 12px;
@@ -557,41 +544,26 @@ tr:last-child td {
     flex-direction: column;
   }
 
-  .header-actions {
+  .header-actions,
+  .button-row {
     justify-content: flex-start;
   }
 
   .status-strip,
   .form-grid,
-  .summary-layout,
-  .candidate-list {
-    grid-template-columns: 1fr;
-  }
-
-  .span-2,
-  .summary-block.full {
-    grid-column: auto;
-  }
-
-  .formula-entry {
-    grid-template-columns: 1fr;
-  }
-
   .formula-meta-grid {
     grid-template-columns: 1fr;
   }
 
-  .reference-search-header,
-  .reference-actions {
-    flex-direction: column;
+  .span-2 {
+    grid-column: auto;
   }
 
-  .reference-link,
-  .extracted-row {
+  .reference-link {
     grid-template-columns: 1fr;
   }
 
   .bar-row {
-    grid-template-columns: 86px minmax(90px, 1fr) 52px;
+    grid-template-columns: 92px minmax(90px, 1fr) 56px;
   }
 }
