@@ -1,22 +1,22 @@
 <p align="center">
-  <img src="./assets/dulang-logo.svg" alt="独狼制剂处方筛选综合工具 Logo" width="520">
+  <img src="./assets/fangyan-logo.svg" alt="方研智枢制剂开发与报告系统 Logo" width="560">
 </p>
 
-<h1 align="center">独狼制剂处方筛选综合工具</h1>
+<h1 align="center">方研智枢</h1>
 
 <p align="center">
-  面向化学药品制剂研发的处方开发方案、实验记录、结果评价与报告生成工具。
+  制剂开发与报告系统：面向化学药品制剂研发的处方开发方案、实验记录、结果评价与报告生成工具。
 </p>
 
 <p align="center">
   <a href="https://dulang-formulation-screening-tool.onrender.com">在线访问 Render 页面</a>
 </p>
 
-这是一个面向化学药品制剂研发的静态网页工具，目标是沉淀为“可复用的处方开发方案、实验记录、结果评价、报告系统生成工具”。当前版本重点把处方开发的核心链条打通：从项目基础信息、QTPP/CQA、风险识别、处方筛选批次、溶出评价到报告草稿输出。
+方研智枢是一个面向化学药品制剂研发的静态网页工具，目标是沉淀为“可复用的处方开发方案、实验记录、结果评价、报告系统生成工具”。当前版本重点把处方开发的核心链条打通：从项目基础信息、QTPP/CQA、风险识别、处方筛选批次、溶出评价到报告草稿输出。
 
 ## 页面预览
 
-![独狼制剂处方筛选综合工具使用截图](./assets/screenshots/app-overview.png)
+![方研智枢制剂开发与报告系统使用截图](./assets/screenshots/app-overview.png)
 
 ## 当前模块
 

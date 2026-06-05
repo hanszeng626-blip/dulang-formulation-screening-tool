@@ -874,18 +874,18 @@ function ingredientList(index, role) {
 }
 
 function saveDraft() {
-  localStorage.setItem("dulang-formulation-workspace", JSON.stringify(state));
+  localStorage.setItem("fangyan-formucore-workspace", JSON.stringify(state));
   alert("草稿已保存到当前浏览器。");
 }
 
 function loadDraft() {
-  const raw = localStorage.getItem("dulang-formulation-workspace");
+  const raw = localStorage.getItem("fangyan-formucore-workspace") || localStorage.getItem("dulang-formulation-workspace");
   if (!raw) return;
   try {
     const parsed = JSON.parse(raw);
     Object.assign(state, parsed);
   } catch {
-    localStorage.removeItem("dulang-formulation-workspace");
+    localStorage.removeItem("fangyan-formucore-workspace");
   }
 }
 
@@ -903,12 +903,12 @@ function exportWorkspace() {
     evaluation,
     report: buildReport(evaluation)
   };
-  downloadFile(`dulang-formulation-workspace-${Date.now()}.json`, JSON.stringify(payload, null, 2), "application/json;charset=utf-8");
-  downloadFile(`dulang-formulation-report-${Date.now()}.txt`, payload.report, "text/plain;charset=utf-8");
+  downloadFile(`fangyan-formucore-workspace-${Date.now()}.json`, JSON.stringify(payload, null, 2), "application/json;charset=utf-8");
+  downloadFile(`fangyan-formucore-report-${Date.now()}.txt`, payload.report, "text/plain;charset=utf-8");
 }
 
 function exportReportText() {
-  downloadFile(`dulang-formulation-report-${Date.now()}.txt`, refs.reportText.textContent, "text/plain;charset=utf-8");
+  downloadFile(`fangyan-formucore-report-${Date.now()}.txt`, refs.reportText.textContent, "text/plain;charset=utf-8");
 }
 
 function downloadFile(filename, content, type) {

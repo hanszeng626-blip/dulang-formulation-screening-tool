@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="190" viewBox="0 0 720 190" role="img" aria-labelledby="title desc">
+  <title id="title">方研智枢制剂开发与报告系统 Logo</title>
+  <desc id="desc">A pharmaceutical formulation research logo with tablet, molecule and report elements.</desc>
+  <defs>
+    <linearGradient id="markGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f766e"/>
+      <stop offset=".52" stop-color="#1d4ed8"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="softGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ecfeff"/>
+      <stop offset="1" stop-color="#eef2ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#0f172a" flood-opacity=".14"/>
+    </filter>
+  </defs>
+
+  <rect width="720" height="190" rx="30" fill="#f8fafc"/>
+  <rect x="16" y="16" width="688" height="158" rx="26" fill="#ffffff" stroke="#dbe3ef"/>
+
+  <g transform="translate(46 33)" filter="url(#shadow)">
+    <rect width="124" height="124" rx="30" fill="url(#markGradient)"/>
+    <circle cx="62" cy="62" r="43" fill="url(#softGradient)" opacity=".97"/>
+
+    <rect x="37" y="55" width="50" height="22" rx="11" fill="#ffffff" stroke="#0f766e" stroke-width="4" transform="rotate(-28 62 66)"/>
+    <line x1="51" y1="59" x2="73" y2="73" stroke="#1d4ed8" stroke-width="4" stroke-linecap="round"/>
+
+    <circle cx="40" cy="37" r="7" fill="#0f766e"/>
+    <circle cx="88" cy="36" r="7" fill="#2563eb"/>
+    <circle cx="95" cy="86" r="7" fill="#7c3aed"/>
+    <line x1="46" y1="39" x2="82" y2="38" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+    <line x1="86" y1="43" x2="94" y2="79" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+
+    <path d="M35 96h58" stroke="#0f172a" stroke-width="5" stroke-linecap="round"/>
+    <path d="M44 106h42" stroke="#0f172a" stroke-width="5" stroke-linecap="round" opacity=".72"/>
+  </g>
+
+  <g transform="translate(206 48)">
+    <text x="0" y="44" font-family="'Microsoft YaHei', 'PingFang SC', Arial, sans-serif" font-size="44" font-weight="800" fill="#0f172a">方研智枢</text>
+    <text x="0" y="84" font-family="'Microsoft YaHei', 'PingFang SC', Arial, sans-serif" font-size="25" font-weight="700" fill="#0f766e">制剂开发与报告系统</text>
+    <text x="0" y="116" font-family="Arial, sans-serif" font-size="16" letter-spacing="2" fill="#64748b">FORMUCORE DEVELOPMENT WORKSPACE</text>
+  </g>
+</svg>
